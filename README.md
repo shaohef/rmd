@@ -1,4 +1,7 @@
 # RMD - the resource management daemon
+Workloads can contend for compute platform resources such as CPU cores, RAM, and cache, impacting the performance and predictability/latency of each other.  The Resource Management Daemon (RMD) open source project aims to ease the task of resource allocation to workloads to achieve predictable performance, without the end user having to comprehend the nuances of machine specific registers, allocation bit masks, and track these across processor generations. Written in golang, RMD presents a RESTful API that allows users to leverage its functionality locally on the host or through a Cloud Orchestrator. Version V1.0 tackles Last Level Cache management, traditionally a dark resource, not comprehended by many, let alone controlled, yet a significant performance impacting factor for latency sensitive networking and real time applications.
+
+We cover in this document deploying, configuring, and using RMD to realize improved performance particularly for Network Function Virtualization.
 
 [![Build Status](https://travis-ci.org/intel/rmd.svg?branch=master)](https://travis-ci.org/intel/rmd)
 [![Go Report Card](https://goreportcard.com/badge/github.com/intel/rmd)](https://goreportcard.com/report/github.com/intel/rmd)
