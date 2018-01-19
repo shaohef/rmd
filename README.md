@@ -13,6 +13,7 @@ We cover in this document deploying, configuring, and using RMD to realize impro
 * [docs/DeveloperQuickStart.md](https://github.com/intel/rmd/blob/master/docs/DeveloperQuickStart.md)
 * [docs/api/](https://github.com/intel/rmd/tree/master/docs/api/v1) - All the API definitions in Swagger YML
 * [docs/references/](https://github.com/intel/rmd/tree/master/docs/reference) - All reference documents from everywhere
+* [Contributor](https://github.com/shaohef/rmd/blob/master/CONTRIBUTOR.md) - Contribution And some history introduce.
 
 ## QuickStart for developers
 

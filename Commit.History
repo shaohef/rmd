@@ -1,0 +1,1828 @@
+commit 66a95a63e039bbc5cd6751bb36e4577f87e6811d
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Tue Oct 24 11:02:38 2017 +0800
+
+    Support to get node id
+
+ lib/cpu/cpu.go       | 12 ++++++++++++
+ model/cache/cache.go |  6 ++++--
+ 2 files changed, 16 insertions(+), 2 deletions(-)
+
+commit 228ac73f4cd6ea8f02dd8dd97f2f9c98aff8034e
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Mon Oct 23 09:49:03 2017 -0400
+
+    Support to get socket id
+
+ lib/cpu/cpu.go       | 11 +++++++++++
+ lib/cpu/cpu_test.go  | 13 +++++++++++++
+ model/cache/cache.go |  4 ++++
+ 3 files changed, 28 insertions(+)
+
+commit 6e9f56e9ec410be369924fa82bb190f320440949
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Tue Oct 17 15:26:05 2017 -0400
+
+    add authorization config
+
+ app/tls/tls.go             | 69 +++++++++++++++++++++++++++-------------------
+ cmd/template/template.go   |  8 ++++--
+ etc/rdtagent/rdtagent.toml |  5 ++--
+ util/acl/acl.go            |  5 +++-
+ util/acl/config/config.go  | 36 ++++++++++++++++++++----
+ 5 files changed, 84 insertions(+), 39 deletions(-)
+
+commit 78bf95aa43621540a2aad92a627575923955ffd7
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Tue Oct 17 14:56:03 2017 -0400
+
+    move tls related code to tls.go file
+
+ app/server.go  | 120 +--------------------------------------------------------
+ app/tls/tls.go | 116 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 118 insertions(+), 118 deletions(-)
+
+commit 3e3672bd29ca462620734223c0af927863a8d381
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Tue Oct 17 14:40:54 2017 -0400
+
+    make golint happy
+
+ app/tls/tls.go  | 6 ++++++
+ util/acl/acl.go | 3 +++
+ 2 files changed, 9 insertions(+)
+
+commit c1142cb75409707055f10ed65c6aa639b7859439
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Mon Oct 16 18:10:12 2017 -0400
+
+    support common user signature
+
+ app/server.go                             |  8 ++++-
+ app/tls/tls.go                            | 53 +++++++++++++++++++++++--------
+ cmd/template/template.go                  |  3 +-
+ etc/rdtagent/acl/roles/user/user-cert.pem | 31 ++++++++++++++++++
+ etc/rdtagent/cert/client/user-cert.pem    | 31 ++++++++++++++++++
+ etc/rdtagent/cert/client/user-key.pem     | 51 +++++++++++++++++++++++++++++
+ etc/rdtagent/rdtagent.toml                |  3 +-
+ util/acl/acl.go                           | 14 +++++---
+ util/acl/config/config.go                 |  3 +-
+ 9 files changed, 176 insertions(+), 21 deletions(-)
+
+commit 0628933d50b9dd7ea68ca0ab8ebe56e14169ccb3
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Mon Oct 16 16:57:00 2017 -0400
+
+    load cert signatures list dynamicly
+
+ app/tls/tls.go  | 71 ++++++++++++++++++++++++++++++++++++++-------------------
+ util/acl/acl.go |  6 +++++
+ 2 files changed, 53 insertions(+), 24 deletions(-)
+
+commit bbc1db32479b61010210e5620e3c9ed67dcf5928
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Sun Oct 15 18:01:40 2017 -0400
+
+    support roles judgement by signature
+
+ app/server.go                         | 43 +++++++++---------
+ app/tls/tls.go                        | 82 +++++++++++++++++++++++++++++++++++
+ cmd/template/template.go              |  1 +
+ etc/rdtagent/acl/roles/admin/cert.pem | 31 +++++++++++++
+ etc/rdtagent/rdtagent.toml            |  1 +
+ util/acl/acl.go                       | 12 +++++
+ util/acl/config/config.go             |  7 +--
+ 7 files changed, 152 insertions(+), 25 deletions(-)
+
+commit 0c977802b466f70649b488bf0f35ad625b0d78a3
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Sun Oct 8 17:23:07 2017 -0400
+
+    revise exit message
+
+ rdtagent.go | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit ce97d008647da08232c90f489866ef5239d759db
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Thu Sep 28 17:55:16 2017 -0400
+
+    simplify ToHumanString
+
+ lib/util/bitmap.go | 106 +++++++----------------------------------------------
+ 1 file changed, 14 insertions(+), 92 deletions(-)
+
+commit d78bd5236f5f6671517f8f0e96d20ca91f5fc085
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Wed Sep 27 17:27:28 2017 -0400
+
+    move log init to top
+    
+    Change log mode to 0660.
+    Change file mode out of band.
+
+ cmd/template/template.go | 12 ++++++++----
+ install-deps             | 18 ++++++++++++++++++
+ rdtagent.go              | 14 ++++++++------
+ util/log/log.go          |  6 ++++--
+ util/util.go             | 14 ++++++++++++++
+ 5 files changed, 52 insertions(+), 12 deletions(-)
+
+commit 31cbcdd7f0a711d0906eb0fb22c218c3fbff7e53
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Tue Sep 26 20:48:42 2017 -0400
+
+    bug fix
+    
+    In most case deployer does not always use root to start RMD
+    
+    This is a quick fix. Will improve it later.
+
+ rdtagent.go  | 16 ++++++++++++++++
+ util/util.go | 17 ++++++++++++-----
+ 2 files changed, 28 insertions(+), 5 deletions(-)
+
+commit f3e2fda56b4588c7f885ca6b5217e4f6d5c1d5df
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Tue Sep 26 19:38:55 2017 -0400
+
+    supper RMD auto quite
+    
+    Most Service spilt privileged operations in another process.
+    This is a common way.
+    
+    If privilege process exit, that means it can provide complete functionality.
+    So quit all process.
+    
+    The follow should be:
+    1. An init script starts RMD as root as Supper-RMD, just provide some limited
+    function.
+    2. Supper-RMD forks(exec) a new RMD as common user and drop it's privilege.
+    3. Supper-RMD wait RMD, When it exits, supper-RMD exits.
+    4. RMD discover Supper-RMD exit, it will exit itself.
+    
+    We does not support Supper-RMD or RMD restart at present.
+    This is a complex solution.
+    
+    REF:
+    https://www.ovirt.org/develop/release-management/features/infra/supervdsm-service/#proposed-changes
+
+ rdtagent.go  | 18 +++++++++++++++++-
+ util/util.go |  7 ++++++-
+ 2 files changed, 23 insertions(+), 2 deletions(-)
+
+commit 8b42da76b9f6967f6eddc7cf34ac29ef6c634898
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Mon Sep 25 00:49:31 2017 -0400
+
+    support tls acl
+
+ app/server.go | 34 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+
+commit 87b836d69c4f7f8d1ac6d7f211c4b9c575bbf66c
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Sun Sep 24 17:36:24 2017 -0400
+
+    enable tls
+    
+    Pre-define server certs. These certs are just for developer testing.
+
+ app/config/config.go                  | 27 ++++++++++---------
+ app/server.go                         | 34 ++++++++++++++++-------
+ cmd/template/template.go              |  5 ++--
+ docs/UserGuide.md                     | 13 +++++++++
+ etc/rdtagent/cert/client/ca.pem       | 35 ++++++++++++++++++++++++
+ etc/rdtagent/cert/client/cert.pem     | 31 +++++++++++++++++++++
+ etc/rdtagent/cert/client/key.pem      | 51 +++++++++++++++++++++++++++++++++++
+ etc/rdtagent/cert/server/ca.pem       | 35 ++++++++++++++++++++++++
+ etc/rdtagent/cert/server/rmd-cert.pem | 31 +++++++++++++++++++++
+ etc/rdtagent/cert/server/rmd-key.pem  | 51 +++++++++++++++++++++++++++++++++++
+ etc/rdtagent/rdtagent.toml            |  5 ++--
+ 11 files changed, 293 insertions(+), 25 deletions(-)
+
+commit 7f39176dec35ce71c8c9021a57b559d33008744d
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Sat Sep 16 16:01:13 2017 -0400
+
+    improve testcase
+    
+    will also support -data 'stdout=true,tasks=["ovs*",dpdk]' in future.
+
+ cmd/gen_conf.go | 41 ++++++++++++++++++++++++++++++++++++++---
+ test.sh         | 21 +++++++++++----------
+ 2 files changed, 49 insertions(+), 13 deletions(-)
+
+commit f06fa9e6e1fb30aa3031f23c255020fdb749e0b9
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Mon Sep 11 18:46:02 2017 +0800
+
+    fix template
+
+ cmd/gen_conf.go            | 2 +-
+ cmd/template/template.go   | 4 ++--
+ etc/rdtagent/rdtagent.toml | 2 +-
+ test.sh                    | 2 +-
+ 4 files changed, 5 insertions(+), 5 deletions(-)
+
+commit 83a098b3c243c90533f35b99418602a1e6d9e65d
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Sat Sep 9 00:09:49 2017 -0400
+
+    fix test.sh bug
+
+ test.sh | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+commit 6daad9c820ef6c888f77da645d725c452a3c70c7
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Sat Sep 9 00:09:49 2017 -0400
+
+    improve testcase run command.
+    
+    The template is very very simple.
+    There are several improvement to make it more flexible.
+
+ cmd/gen_conf.go           | 99 +++++++++++++++++++++++++++++++++++++++++++++++
+ cmd/template/broadwell.go | 10 +++++
+ cmd/template/skylake.go   | 10 +++++
+ cmd/template/template.go  | 59 ++++++++++++++++++++++++++++
+ test.sh                   | 13 +------
+ 5 files changed, 180 insertions(+), 11 deletions(-)
+
+commit 2a542f8bbe5a40ee4cbee33fb06233c08b830c7e
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Sat Sep 9 07:56:24 2017 -0400
+
+    Improve acl
+    
+    This is more better.
+
+ util/acl/acl.go | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit e3ff59e89a04ad3fccf9a1055d67c4de905854d3
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Thu Sep 7 18:03:15 2017 -0400
+
+    update Godeps.json
+
+ Godeps/Godeps.json                                 |  10 +
+ vendor/github.com/Knetic/govaluate/.gitignore      |  28 +
+ vendor/github.com/Knetic/govaluate/.travis.yml     |  10 +
+ vendor/github.com/Knetic/govaluate/CONTRIBUTORS    |  13 +
+ .../Knetic/govaluate/EvaluableExpression.go        | 276 ++++++++
+ .../Knetic/govaluate/EvaluableExpression_sql.go    | 167 +++++
+ .../github.com/Knetic/govaluate/ExpressionToken.go |   9 +
+ vendor/github.com/Knetic/govaluate/LICENSE         |  21 +
+ vendor/github.com/Knetic/govaluate/MANUAL.md       | 176 +++++
+ .../github.com/Knetic/govaluate/OperatorSymbol.go  | 309 +++++++++
+ vendor/github.com/Knetic/govaluate/README.md       | 232 +++++++
+ vendor/github.com/Knetic/govaluate/TokenKind.go    |  75 +++
+ .../github.com/Knetic/govaluate/evaluationStage.go | 460 +++++++++++++
+ .../Knetic/govaluate/expressionFunctions.go        |   8 +
+ .../Knetic/govaluate/expressionOutputStream.go     |  46 ++
+ vendor/github.com/Knetic/govaluate/lexerState.go   | 373 +++++++++++
+ vendor/github.com/Knetic/govaluate/lexerStream.go  |  39 ++
+ vendor/github.com/Knetic/govaluate/parameters.go   |  32 +
+ vendor/github.com/Knetic/govaluate/parsing.go      | 526 +++++++++++++++
+ .../Knetic/govaluate/sanitizedParameters.go        |  67 ++
+ vendor/github.com/Knetic/govaluate/stagePlanner.go | 724 +++++++++++++++++++++
+ vendor/github.com/Knetic/govaluate/test.sh         |  33 +
+ vendor/github.com/Knetic/govaluate/tokenStream.go  |  36 +
+ vendor/github.com/casbin/casbin/.gitignore         |  27 +
+ vendor/github.com/casbin/casbin/.travis.yml        |  12 +
+ vendor/github.com/casbin/casbin/LICENSE            | 201 ++++++
+ vendor/github.com/casbin/casbin/README.md          | 240 +++++++
+ vendor/github.com/casbin/casbin/casbin-logo.png    | Bin 0 -> 34267 bytes
+ vendor/github.com/casbin/casbin/config/config.go   | 210 ++++++
+ vendor/github.com/casbin/casbin/enforcer.go        | 399 ++++++++++++
+ vendor/github.com/casbin/casbin/enforcer_safe.go   |  81 +++
+ .../casbin/casbin/file-adapter/adapter.go          | 125 ++++
+ vendor/github.com/casbin/casbin/internal_api.go    |  63 ++
+ vendor/github.com/casbin/casbin/management_api.go  | 179 +++++
+ vendor/github.com/casbin/casbin/model/assertion.go |  44 ++
+ vendor/github.com/casbin/casbin/model/function.go  |  40 ++
+ vendor/github.com/casbin/casbin/model/model.go     | 129 ++++
+ vendor/github.com/casbin/casbin/model/policy.go    | 146 +++++
+ vendor/github.com/casbin/casbin/persist/adapter.go |  48 ++
+ .../casbin/casbin/rbac/default_role_manager.go     | 226 +++++++
+ .../github.com/casbin/casbin/rbac/role_manager.go  |  38 ++
+ vendor/github.com/casbin/casbin/rbac_api.go        | 125 ++++
+ .../casbin/casbin/rbac_api_with_domains.go         |  37 ++
+ .../casbin/casbin/util/builtin_operators.go        | 139 ++++
+ vendor/github.com/casbin/casbin/util/log_util.go   |  34 +
+ vendor/github.com/casbin/casbin/util/util.go       | 110 ++++
+ 46 files changed, 6323 insertions(+)
+
+commit 1f6d26512063dd68a7799698d1b96b23a2e56f43
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Fri Sep 8 11:35:43 2017 +0800
+
+    acl support
+    
+    support url acl firstly.
+    do not support change acl policy dynamicly.
+    
+    We just support two roles: admin/root and user.
+    
+    After the PAM is integrated, it can do acl check as follow.
+    {
+           e, _ := acl.NewEnforcer()
+           if e.Enforce(req, user) != true {
+                   log.Errorf("User is not allow to access this resource")
+           }
+    }
+
+ etc/rdtagent/acl/url/model.conf | 15 +++++++++
+ etc/rdtagent/acl/url/policy.csv | 13 ++++++++
+ etc/rdtagent/rdtagent.toml      |  5 +++
+ util/acl/acl.go                 | 68 +++++++++++++++++++++++++++++++++++++++++
+ util/acl/config/config.go       | 22 +++++++++++++
+ util/bootcheck/bootcheck.go     |  5 +++
+ 6 files changed, 128 insertions(+)
+
+commit 37d7b904c8eea1acad951dcc37d0de35c5542793
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Wed Sep 6 14:42:39 2017 +0800
+
+    expose available cpus
+
+ model/cache/cache.go    | 36 ++++++++++++++++++------------
+ util/rdtpool/cpupool.go | 59 +++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 81 insertions(+), 14 deletions(-)
+
+commit 332f068ed2f4e9789f3113f0af90cd493670811f
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Tue Sep 5 16:09:48 2017 +0800
+
+    Use FormatByKey to format cacheSchema
+
+ test/integration/caches_test.go | 43 +++++++++++++++++------------------------
+ 1 file changed, 18 insertions(+), 25 deletions(-)
+
+commit 35ffec1da4a13cfa4f0997f6984bddba0c858302
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Mon Sep 4 15:11:11 2017 -0400
+
+    Add a format util
+    
+    format string by key.
+
+ test/integration/test_helpers/utils.go      | 21 +++++++++++++++++++++
+ test/integration/test_helpers/utils_test.go | 18 ++++++++++++++++++
+ 2 files changed, 39 insertions(+)
+
+commit b225909e88516d01923aafb3fbf0ddbc8faefd53
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Sun Sep 3 23:54:22 2017 -0400
+
+    add cache/llc api
+    
+    Does not find how to use internal redirect for llc.
+
+ api/v1/caches.go | 41 ++++++++++++++++++++++++-----------------
+ 1 file changed, 24 insertions(+), 17 deletions(-)
+
+commit c750db203d08dc407020d7f718d26514428e5ce8
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Tue Aug 29 19:12:25 2017 -0400
+
+    test case config support
+
+ test.sh                                           | 19 ++++++++++--
+ test/integration/sample/sample_httpexpect_test.go | 17 ++++++++--
+ test/integration/sample/sample_suite_test.go      | 14 ++++++++-
+ test/integration/test_helpers/utils.go            | 38 +++++++++++++++++++++++
+ 4 files changed, 82 insertions(+), 6 deletions(-)
+
+commit 5abc3551f341066c18eeff8d145a0d64f5fc6da1
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Tue Aug 29 18:43:35 2017 -0400
+
+    delay 1 seconds to do integration test
+    
+    Let rdtagent ready.
+    
+    We should find a good way instead of sleep.
+
+ test.sh | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit a6de1eecbdbcc19514f9c0c03491a5091f70bb61
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Tue Aug 29 15:40:21 2017 -0400
+
+    integration test case sample
+
+ test.sh                                           |  2 +-
+ test/integration/sample/doc.go                    | 21 +++++++++
+ test/integration/sample/sample.go                 |  1 +
+ test/integration/sample/sample_httpexpect_test.go | 56 +++++++++++++++++++++++
+ test/integration/sample/sample_suite_test.go      | 16 +++++++
+ test/integration/sample/sample_test.go            | 47 +++++++++++++++++++
+ 6 files changed, 142 insertions(+), 1 deletion(-)
+
+commit 935758cf27fe25da3a31904c380a17fecf6e1f3f
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Mon Aug 28 16:25:21 2017 -0400
+
+    Support test cases
+    
+    Add a shell to support functional test cases.
+    just unit tests
+    $ sudo ./test.sh -u
+    just functional tests
+    $ sudo ./test.sh -i
+    all tests
+    $ sudo ./test.sh
+    
+    Hard code to change the rdtagent.toml.
+    Some hack.
+    
+    Improvement need to pass the config as parameters to testcases.
+    
+    TODO: register signal handler to remove PID file.
+
+ lib/flock/flock.go                   |  5 ++-
+ test.sh                              | 67 ++++++++++++++++++++++++++++++++++++
+ test/integration/integration_test.go |  1 +
+ util/bootcheck/bootcheck.go          |  7 ++++
+ util/pidfile/pidfile.go              | 58 +++++++++++++++++++++++++++++++
+ 5 files changed, 137 insertions(+), 1 deletion(-)
+
+commit aa2e82a2375a683e165b15f7221c0141afde2dc4
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Sun Aug 27 16:28:19 2017 -0400
+
+    disable UnixSocket
+
+ app/server.go | 37 +++++++++++++++++++++++++++++++++++--
+ 1 file changed, 35 insertions(+), 2 deletions(-)
+
+commit eb0b83c012ed48d2b3a4cb866b23fcae5cb1fcc1
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Sat Aug 26 00:22:05 2017 -0400
+
+    testcase support
+
+ util/conf/conf.go       | 7 ++++++-
+ util/options/options.go | 4 ++++
+ 2 files changed, 10 insertions(+), 1 deletion(-)
+
+commit d6c3438d5fd9685bfd0024e183f3d28768e237cd
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Wed Aug 23 14:57:51 2017 -0400
+
+    remove plugins first to avoid test fail
+
+ plugins/algorithm/sample/Godeps/Godeps.json        |  9 ---
+ plugins/algorithm/sample/Godeps/Readme             |  5 --
+ plugins/algorithm/sample/README                    | 39 -------------
+ plugins/algorithm/sample/build.sh                  | 28 ---------
+ plugins/algorithm/sample/internal/policy/policy.go | 15 -----
+ .../algorithm/sample/internal/workload/workload.go | 20 -------
+ plugins/algorithm/sample/sample.go                 | 68 ----------------------
+ plugins/algorithm/sample/sample_test.go            | 64 --------------------
+ 8 files changed, 248 deletions(-)
+
+commit b0bbba566da8fa513fd64f5f726de0dfe2035369
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Sat Aug 19 12:49:37 2017 -0400
+
+    tls support bidirectional auth.
+    
+    Just use Exclusive RootPools instead of system root pools.
+    
+    When we use certificates for client authentication, we should be
+    aware that RMD does not provide for Certificate Revocation List (CRL)
+    checking at present.
+    
+    Also when server certificate expiration, user should fresh it maually.
+    
+    And RMD does not generate self-sign certificate automatically at present.
+
+ app/config/config.go       | 31 +++++++++++++++----
+ app/server.go              | 77 ++++++++++++++++++++++++++++++++++++++++++++--
+ etc/rdtagent/rdtagent.toml |  4 ++-
+ 3 files changed, 102 insertions(+), 10 deletions(-)
+
+commit d670643bb60ea40a37f1032989ec323b30178bef
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Wed Aug 16 23:32:21 2017 -0400
+
+    support multi container.
+    
+    One for http over tcp
+    Another for http over unix socket
+    
+    This patch always enable tcp/http
+    Http over unix socket is optional by config.
+    
+    We still need to improve the http server.
+    For example, we should support only Http over unix socket on localhost,
+    and only tcp/http on remote.
+    Maybe iptalbe can help this.
+    
+    Also, we should define which resource can by accessed by unix socket,
+    which can be accessed by tcp/http.
+    
+    We should also support to remove the unix socket once RMD exit.
+    Maybe golang defer function to remove the unix socket or we need to
+    register a signal handler to remove the unix socket.
+
+ app/config/config.go       |  8 ++++---
+ app/server.go              | 55 ++++++++++++++++++++++++++++++++++++++++++----
+ docs/UserGuide.md          |  8 +++++++
+ etc/rdtagent/rdtagent.toml |  2 ++
+ util/options/options.go    |  6 +++--
+ 5 files changed, 70 insertions(+), 9 deletions(-)
+
+commit 664e49498e7bd86fc9dc247d239fb7df8e8fec29
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Thu Aug 10 20:55:00 2017 +0800
+
+    trim space for infra group task cmdline
+
+ util/rdtpool/infragroup.go | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit a41c7718ea68147161db5ee5551aedf87c9fa731
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Thu Aug 10 17:35:28 2017 +0800
+
+    return error instead of AppError
+
+ api/error/error.go               | 2 +-
+ api/v1/hospitality.go            | 7 +++++--
+ model/hospitality/hospitality.go | 4 ++--
+ 3 files changed, 8 insertions(+), 5 deletions(-)
+
+commit c7dffbedf08afcb9df59b2a6b13373a5f6d8f8f5
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Tue Aug 8 17:48:37 2017 +0800
+
+    Set log stdout config as true.
+    
+    We can change it to false when RMD release.
+
+ etc/rdtagent/rdtagent.toml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 04fe96d216aab23aa6bc2617ea75cd2bf21d8c3b
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Thu Aug 10 13:48:05 2017 +0800
+
+    re-write flock
+
+ lib/flock/flock.go      | 47 ++++++++++++++++++++++++++---------------------
+ lib/flock/flock_test.go |  3 ++-
+ 2 files changed, 28 insertions(+), 22 deletions(-)
+
+commit 201006d1ebec7bc4cbfb5bc4e4e8ede84414fe62
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Tue Aug 8 16:11:12 2017 +0800
+
+    move os/infra group to rdtpool
+    
+    just file move. no logical change.
+
+ util/bootcheck/bootcheck.go                |   4 +-
+ util/bootcheck/infragroup/config/config.go |  31 ------
+ util/bootcheck/infragroup/infragroup.go    | 153 -----------------------------
+ util/bootcheck/osgroup/config/config.go    |  24 -----
+ util/bootcheck/osgroup/osgroup.go          | 140 --------------------------
+ util/rdtpool/infragroup/config/config.go   |  31 ++++++
+ util/rdtpool/infragroup/infragroup.go      | 153 +++++++++++++++++++++++++++++
+ util/rdtpool/osgroup/config/config.go      |  24 +++++
+ util/rdtpool/osgroup/osgroup.go            | 140 ++++++++++++++++++++++++++
+ util/rdtpool/rdtpool.go                    |   4 +-
+ 10 files changed, 352 insertions(+), 352 deletions(-)
+
+commit 9ac06f86b9598ea06921b4ca5a5edff189d6359d
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Sat Aug 5 23:01:47 2017 +0800
+
+    support InfraGroup tasks
+    
+    InfraGroup support tasks.
+    Still not support DDIO.
+
+ lib/proc/proc.go                        |  2 +-
+ util/bootcheck/infragroup/infragroup.go | 36 ++++++++++++++++++++++++++++++++-
+ 2 files changed, 36 insertions(+), 2 deletions(-)
+
+commit dcc2355472bcbd7299209b63a790e3176afe3797
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Tue Aug 8 11:56:36 2017 +0800
+
+    remove used var ways
+
+ util/bootcheck/osgroup/osgroup.go | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 73174dd39e117af9ff538219114194d87363bf61
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Sat Aug 5 23:01:47 2017 +0800
+
+    support InfraGroup
+    
+    Not support tasks and DDIO.
+
+ lib/resctrl/rescrtl.go                  |   7 ++
+ util/bootcheck/infragroup/infragroup.go | 118 ++++++++++++++++++++++++++++++--
+ 2 files changed, 118 insertions(+), 7 deletions(-)
+
+commit eae6216d8db5eec0696fea7f89d9ef4d0b449a8a
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Sat Aug 5 23:01:47 2017 +0800
+
+    support InfraGroup
+
+ etc/rdtagent/rdtagent.toml                 |  6 ++++++
+ util/bootcheck/bootcheck.go                |  7 +++++++
+ util/bootcheck/infragroup/config/config.go | 31 ++++++++++++++++++++++++++++++
+ util/bootcheck/infragroup/infragroup.go    | 21 ++++++++++++++++++++
+ 4 files changed, 65 insertions(+)
+
+commit 48402026ad966db66ea97fc262c18bed36b6bb68
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Sat Aug 5 22:50:18 2017 +0800
+
+    move the OS Group util to base
+
+ util/bootcheck/osgroup/osgroup.go |  5 ++--
+ util/bootcheck/osgroup/util.go    | 61 ---------------------------------------
+ util/rdtpool/base/base.go         | 61 +++++++++++++++++++++++++++++++++++++++
+ util/rdtpool/rdtpool.go           |  1 +
+ 4 files changed, 65 insertions(+), 63 deletions(-)
+
+commit 8e23245382f1f97986917f5becc1fc60c5e1eaa7
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Sat Aug 5 21:38:10 2017 +0800
+
+    Re-implement OS Groups
+    
+    We should alocate the OS Groups as much ways as possible when RMD starts.
+
+ lib/util/util.go                  |  17 +++++
+ util/bootcheck/osgroup/osgroup.go | 145 +++++++++++++++++++++++++++++---------
+ util/bootcheck/osgroup/util.go    |  43 ++++++++++-
+ 3 files changed, 171 insertions(+), 34 deletions(-)
+
+commit 981f3aabe201e01dce88574a1b3efbfcd756d365
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Fri Aug 4 10:20:57 2017 +0800
+
+    Add tag for ResAssociation struct.
+    
+    This can be avoid error prone.
+    But the parser process is WIP.
+
+ lib/resctrl/rescrtl.go | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+commit 25fe5974b8d4aa18f0861d212b4aefd506b5cbb5
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Wed Aug 2 22:28:45 2017 +0800
+
+    support OSGroup
+
+ etc/rdtagent/rdtagent.toml              |  5 +++
+ lib/resctrl/rescrtl.go                  |  4 +-
+ model/workload/util.go                  |  1 +
+ model/workload/workload.go              |  1 +
+ util/bootcheck/bootcheck.go             |  7 ++++
+ util/bootcheck/osgroup/config/config.go | 24 +++++++++++
+ util/bootcheck/osgroup/osgroup.go       | 70 +++++++++++++++++++++++++++++++++
+ util/bootcheck/osgroup/util.go          | 20 ++++++++++
+ 8 files changed, 130 insertions(+), 2 deletions(-)
+
+commit d26098976610e253f6399c80db107fc1c30b8146
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Mon Jul 24 23:07:56 2017 +0800
+
+    support available policy counter.
+    
+    rush for China Open days.
+    Not enough test.
+
+ api/v1/hospitality.go            |  41 ++++++++++++
+ app/server.go                    |   2 +
+ model/cache/cache.go             |  60 +++++++++++++----
+ model/hospitality/hospitality.go | 137 +++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 227 insertions(+), 13 deletions(-)
+
+commit 5f1c692e4925bd80fbf19e79f11f05a176c17f2d
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Sun Jul 23 08:09:32 2017 +0800
+
+    support cache usage
+
+ api/v1/caches.go     |  4 ++--
+ model/cache/cache.go | 44 ++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 46 insertions(+), 2 deletions(-)
+
+commit e9f5472b1e034915e1a8a1d5c805bdee7618e031
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Thu Jul 20 17:50:58 2017 +0800
+
+    mini refine DB.
+    
+    Though the current DB design is flat.
+    This patch does not want to do major operation on DB.
+    Just want to fix some bugs.
+    
+    The DB layer is not very clear.
+    It is really a twist to use it.
+    
+    Also need to uncoupled db and app server.
+    
+    NOTE, this patch does not test Mgo.
+    
+    There is also another problem, we can create multi-infra, is this
+    allowed?
+    $ curl -H "Content-Type: application/json" --request GET http://127.0.$
+    :8081/v1/workloads/
+    [
+      {
+       "id": "43",
+       "core_ids": null,
+       "task_ids": [
+        "41187"
+       ],
+       "policy": "silver",
+       "Status": "Successful",
+       "group": [
+        "infra"
+       ],
+       "CosName": "infra"
+      },
+      {
+       "id": "44",
+       "core_ids": null,
+       "task_ids": [
+        "41347"
+       ],
+       "policy": "silver",
+       "Status": "Successful",
+       "group": [
+        "infra"
+       ],
+       "CosName": "infra"
+      },
+      {
+       "id": "45",
+       "core_ids": null,
+       "task_ids": [
+        "41469"
+       ],
+       "policy": "gold",
+       "Status": "Successful",
+       "group": [
+        "infra"
+       ],
+       "CosName": "infra"
+      }
+     ]
+
+ app/server.go               | 21 ++++---------------
+ db/boltdb.go                | 46 ++++++++++++++++++++++++++++++----------
+ db/config/config.go         | 35 +++++++++++++++++++++++++++++++
+ db/db.go                    | 14 +++++++++++++
+ db/mgodb.go                 | 49 ++++++++++++++++++++++++++++++++-----------
+ model/workload/workload.go  |  1 +
+ util/bootcheck/bootcheck.go | 51 ++++++++++++++++++++++++++++++++++++++++++++-
+ 7 files changed, 176 insertions(+), 41 deletions(-)
+
+commit 1ede4ce7281206b53aba991449ddf77a2be4f0f9
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Mon Jul 17 19:07:16 2017 +0800
+
+    util: get isolated CPUs
+    
+    The result will be as follow:
+    2-21,24-43,46-65,68-87
+    
+    This result can generate a Bitmap
+
+ lib/cpu/cpu.go | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+commit 0e1e2c01de53e723a40949da997bf43c9f558050
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Mon Jul 17 16:28:33 2017 +0800
+
+    SanityCheck for RDM boot.
+    
+    Exit if the platform doesn't sitisfy the requirements for RMD
+
+ lib/cpu/cpu.go              |  2 +-
+ lib/resctrl/rescrtl.go      |  6 +++---
+ rdtagent.go                 |  2 ++
+ util/bootcheck/bootcheck.go | 34 ++++++++++++++++++++++++++++++++++
+ 4 files changed, 40 insertions(+), 4 deletions(-)
+
+commit 2c5cd3d33ad34a3b778238698f4e682d6adeb23d
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Mon Jul 17 15:14:45 2017 +0800
+
+    postpone to create DB
+    
+    Bad request from user, do not create DB.
+
+ api/v1/workload.go         | 8 ++++++--
+ model/workload/workload.go | 7 -------
+ 2 files changed, 6 insertions(+), 9 deletions(-)
+
+commit ae8d766ee7b2f062792ec7b28cf1859ca9e3680d
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Mon Jul 17 08:48:36 2017 +0800
+
+    bug fix: do not create DB for StatusBadRequest
+    
+    1. classify the error.
+    2. when error is StatusBadRequest, delete DB
+
+ api/error/error.go         | 48 ++++++++++++++++++++++++++++++++++++++++++++--
+ api/error/error_test.go    | 26 ++++++++++---------------
+ api/v1/workload.go         | 12 ++++++++----
+ model/workload/workload.go | 33 ++++++++++++++++++++-----------
+ 4 files changed, 86 insertions(+), 33 deletions(-)
+
+commit ea1bb414407a1f2ad67a6fedc15f45c192df3e34
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Sun Jul 16 12:34:47 2017 +0800
+
+    add a wraper for cpu Bitmap
+
+ model/workload/util.go     | 19 +++++++++++++++++++
+ model/workload/workload.go | 14 +++++++-------
+ 2 files changed, 26 insertions(+), 7 deletions(-)
+
+commit 15ffc51608dd697b34da555d3da5fbd1b8219820
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Sun Jul 16 11:48:57 2017 +0800
+
+    Set cpuNumber as global
+
+ lib/cpu/cpu.go             | 31 ++++++++++++++++++++-----------
+ model/workload/workload.go | 21 ++++++++++++++-------
+ 2 files changed, 34 insertions(+), 18 deletions(-)
+
+commit 38eb216ebdd0c690c208cd951c0dc0ac77dc19d0
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Sat Jul 15 09:19:10 2017 -0700
+
+    add cpu mircoarch config file.
+    
+    Only support family and model
+    Firstly we set gold cahce size is 3 ways on skylake tentatively.
+    This is just indicate the difference with Broadwell.
+    We need to do more tests or read up the Intel's spec to know the exactly
+    value.
+    
+    Also remove hard code.
+
+ etc/policy.yaml            | 13 +++++++++++++
+ etc/rdtagent/cpu_map.toml  | 11 +++++++++++
+ lib/cpu/cpu.go             |  2 +-
+ lib/cpu/cpu_test.go        |  2 +-
+ lib/cpu/microarch.go       | 46 +++++++++++++++++++++++++++++++++++++++++++++-
+ model/workload/workload.go |  7 ++++++-
+ 6 files changed, 77 insertions(+), 4 deletions(-)
+
+commit 70f8f2250eb9b0ce982225956029ab70ac039427
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Sat Jul 15 21:13:18 2017 +0800
+
+    bug fix: unifiy the data type of GetConnectiveBits
+
+ lib/util/bitmap.go | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit de37d522fb00fb70047938fea8e3b3b34f822fca
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Sat Jul 15 20:18:14 2017 +0800
+
+    use task flow
+
+ lib/resctrl/rescrtl.go   | 56 +-----------------------------------------------
+ lib/resctrl/task_flow.go |  4 ++--
+ 2 files changed, 3 insertions(+), 57 deletions(-)
+
+commit 71b67594870836beb6f33b6af4841adaeaf74866
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Sat Jul 15 19:43:34 2017 +0800
+
+    bug fix: do not need to generate cpu bit string with empty CoreIDs
+
+ lib/util/bitmap.go         |  4 ++++
+ model/workload/workload.go | 13 ++++++++-----
+ 2 files changed, 12 insertions(+), 5 deletions(-)
+
+commit 9acf7cbee146900c621a0479f989ee9b050ba608
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Sat Jul 15 20:22:08 2017 +0800
+
+    bug fix: do not need to update resctrl cups with default value.
+    
+    If user do not pass CPUsID means it does not want to update cups files.
+
+ lib/resctrl/rescrtl.go | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit fcf660d70c4095507cbfe51f163352192a3e9a0c
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Thu Jul 13 06:48:41 2017 -0700
+
+    bug fix: the value from proc is Decimal instead of Hex.
+    
+    the value from proc is Decimal instead of Hex.
+
+ lib/cpu/cpu.go       | 23 ++++++-----------------
+ lib/cpu/cpu_test.go  |  4 ++--
+ lib/cpu/microarch.go |  1 -
+ 3 files changed, 8 insertions(+), 20 deletions(-)
+
+commit d2c414e8ee4b164135aaff9f03e036f91777293b
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Thu Jul 13 06:16:05 2017 -0700
+
+    add a map for cpu microarch
+    
+    This map just support some known microarch at present.
+    
+    Please feel free to add more known microarch.
+
+ lib/cpu/cpu.go       |  2 +-
+ lib/cpu/cpu_test.go  | 17 +++++++++++++++--
+ lib/cpu/microarch.go | 19 +++++++++++++++++++
+ 3 files changed, 35 insertions(+), 3 deletions(-)
+
+commit ac04f047781b8c5544d76c33a7248867a99b38d0
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Thu Jul 13 05:36:52 2017 -0700
+
+    get cpu signature
+
+ lib/cpu/cpu.go      | 56 ++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ lib/cpu/cpu_test.go | 14 ++++++++++++++
+ 2 files changed, 69 insertions(+), 1 deletion(-)
+
+commit 605e1573c988e785fbe64a697b9c00f995be6b51
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Thu Jul 13 05:39:02 2017 -0700
+
+    Pass the map of ResAssociation for task flow
+
+ lib/resctrl/rescrtl.go   | 7 +++++++
+ lib/resctrl/task_flow.go | 4 ++--
+ 2 files changed, 9 insertions(+), 2 deletions(-)
+
+commit f611616a297b2a34b8fc851ea584a8637a77e665
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Tue Jul 11 11:36:33 2017 -0400
+
+    remove Packages in Godeps.json
+    
+    godep always update the Godeps.json and remove the Packages.
+    So do not need it.
+    I guess that's because we remove the pkg dir.
+
+ Godeps/Godeps.json | 3 ---
+ 1 file changed, 3 deletions(-)
+
+commit 84e3c546cfad1279623f6db257f1f4af51afbe19
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Tue Jul 11 11:35:14 2017 -0400
+
+    add vendor task lib
+
+ vendor/github.com/denderello/task/.travis.yml      |  4 ++
+ vendor/github.com/denderello/task/LICENSE          | 13 +++++
+ vendor/github.com/denderello/task/README.md        | 21 ++++++++
+ vendor/github.com/denderello/task/error.go         | 38 +++++++++++++++
+ vendor/github.com/denderello/task/queue.go         | 57 ++++++++++++++++++++++
+ vendor/github.com/denderello/task/task.go          |  7 +++
+ vendor/github.com/denderello/task/task_recorder.go | 41 ++++++++++++++++
+ 7 files changed, 181 insertions(+)
+
+commit bda5a4d6192a9f0f27f1f684b80a6128f66c0de5
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Tue Jul 11 20:31:54 2017 -0700
+
+    Commit transaction.
+    
+    Commit should be a transaction.
+    So we use taskFlow to guarantee the consistency.
+    Also we need a coarse granularity lock for IPC. We already has it.
+    Also we need a file lock for consistency among different processes.
+    In plan.
+    
+    After some test on taskFlow, we can remove the current Commit logic
+    code and use taskFlow.
+    The taskFlow need a snapshot of all ResAssociation for the
+    transaction.
+
+ lib/resctrl/task_flow.go | 153 +++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 153 insertions(+)
+
+commit ee47fbab9deff25b4bb0bb53cbf487e5a30c1ad0
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Mon Jul 10 03:41:32 2017 -0700
+
+    use ascii instead of int for cmb lookup table.
+    
+    int is error prone.
+
+ model/util/util.go | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+commit b0fffb3d502f8f4b180aa7ccbd2dc11e0f667521
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Mon Jul 10 02:57:13 2017 -0700
+
+    Guess the bitmap length.
+    
+    The guess value is no accurate.
+    But no harmful.
+
+ lib/util/bitmap.go      | 74 +++++++++++++++++++++++++++++++++++++------------
+ lib/util/bitmap_test.go | 13 +++++++--
+ 2 files changed, 67 insertions(+), 20 deletions(-)
+
+commit 196f38c236c6846fcc186c8371fe16f411a1e237
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Mon Jul 10 00:11:56 2017 -0700
+
+    add testcase for IsZeroHexString
+    
+    e95aebb missing testcase. Add it.
+
+ lib/util/util_test.go | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+
+commit e95aebbd7a4a592664108aec9b9e3241dfb947b6
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Mon Jul 10 00:08:27 2017 -0700
+
+    varify the BitMaps is empty.
+    
+    Also add an function to check a hex string contains all zero chars.
+
+ lib/util/bitmap.go      | 32 +++++++++++++++-----------------
+ lib/util/bitmap_test.go |  8 ++++----
+ lib/util/util.go        | 10 ++++++++++
+ 3 files changed, 29 insertions(+), 21 deletions(-)
+
+commit bf8718a10c57f7d1f5ccccf1dd6af5baeea4fbdf
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Sun Jul 9 23:25:51 2017 -0700
+
+    return the hex string without "0" leading.
+
+ lib/util/bitmap.go      | 16 ++++++++++------
+ lib/util/bitmap_test.go |  7 +++++++
+ 2 files changed, 17 insertions(+), 6 deletions(-)
+
+commit 4a1581cad2a5e7b5f5dc636517f498c9413ecbf9
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Sun Jul 9 18:09:32 2017 -0700
+
+    form hex string to BitMaps
+    
+    we can transfer a hex string, such as "3df00cfff00ffafff" to a BitMaps.
+
+ lib/util/bitmap.go      | 20 ++++++++++++++++++++
+ lib/util/bitmap_test.go | 11 +++++++++++
+ 2 files changed, 31 insertions(+)
+
+commit 375d916b764c13ee0291e829b3932fc7071b8c8f
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Fri Jul 7 06:57:28 2017 -0700
+
+    pass interface to NewBitMaps
+    
+    In this way we can pass ["1-7"], "FFFF", [0xFFFF] to NewBitMaps.
+
+ lib/util/bitmap.go | 16 +++++++++++-----
+ 1 file changed, 11 insertions(+), 5 deletions(-)
+
+commit 9cd5c0862f3af2f6d4a77a6988acd407bac80950
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Fri Jul 7 06:13:38 2017 -0700
+
+    BitMap support GetConnectiveBits
+    
+    get specify continuous "1"
+
+ lib/util/bitmap.go      | 52 +++++++++++++++++++++++++++++++++++++++++++++++++
+ lib/util/bitmap_test.go | 42 +++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 94 insertions(+)
+
+commit 9384a5fdb715180b596667e970ad07e523080541
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Fri Jul 7 03:38:07 2017 -0700
+
+    BitMaps support MapsMaxConnectiveBits
+    
+    Get max continuous "1"
+
+ lib/util/bitmap.go      | 34 ++++++++++++++++++++++++++++++++++
+ lib/util/bitmap_test.go | 18 ++++++++++++++++++
+ 2 files changed, 52 insertions(+)
+
+commit fd556735cf4e6d72059086aa91286785a706c9fb
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Fri Jul 7 01:57:18 2017 -0700
+
+    support BitMaps.ToBinStrings
+    
+    from BitMaps to binary strings.
+    This classify the continuous zero and one into different a slice.
+    Such as:
+    from "11000011" to ["11", "0000", "11"]
+
+ lib/util/bitmap.go      | 22 +++++++++++++++++++++-
+ lib/util/bitmap_test.go | 11 +++++++++++
+ 2 files changed, 32 insertions(+), 1 deletion(-)
+
+commit 3e4c6e2ce646641394ef0c54f402cf297f66bd6c
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Fri Jul 7 01:17:11 2017 -0700
+
+    support BitMaps.ToBinString
+    
+    from BitMaps to binary string.
+
+ lib/util/bitmap.go      | 26 ++++++++++++++++++++++++++
+ lib/util/bitmap_test.go | 15 +++++++++++++--
+ 2 files changed, 39 insertions(+), 2 deletions(-)
+
+commit cb958487f98cb95de9d815930e319a21a397d55d
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Thu Jul 6 22:08:02 2017 -0700
+
+    support BitMaps.ToString
+    
+    from BitMaps to hex string.
+
+ lib/util/bitmap.go      | 18 ++++++++++++++++++
+ lib/util/bitmap_test.go | 10 ++++++++++
+ 2 files changed, 28 insertions(+)
+
+commit 0d7e9f232526902bc5fffa57bfdc158b4212c362
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Thu Jul 6 07:11:59 2017 -0700
+
+    support basic set operations for BitMaps
+    
+    support union, intersection, (asymmetric! ) difference
+
+ lib/util/bitmap.go      | 142 +++++++++++++++++++++++++++++++++++++++++++++---
+ lib/util/bitmap_test.go |  59 ++++++++++++++++++++
+ 2 files changed, 194 insertions(+), 7 deletions(-)
+
+commit 8ece8af89cf42195bb406a2d2b70593f4c009032
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Tue Jul 4 14:35:34 2017 -0400
+
+    introduce task flow.
+    
+    We can leverage this task flow for sequential operation.
+
+ Godeps/Godeps.json          |  4 ++
+ lib/resctrl/rescrtl_test.go | 99 +++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 103 insertions(+)
+
+commit 80d972eab8688e9c30ce1354c17a734832798a93
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Thu Jun 29 20:40:57 2017 -0400
+
+    log support.
+    
+    There are several log framework, such as glog, log4go, logrus.
+    
+    ref: https://go.libhunt.com/project/logrus/vs/glog
+    logrus is more popular.
+    Use logrus.
+    
+    Rdtagent dose not support remote log writer, and no plan for it at present.
+    In product enviroment, deployer can use Splunk, Logstash or other tools for
+    error log alarm.
+    
+    Logrus does not support log rotation. This can be done by an external program
+    (like logrotate(8)).
+    
+    Rdtagent also do not support the follow options:
+          --alsologtostderr                  log to standard error as well
+    as files
+          --log-backtrace-at traceLocation   when logging hits line file:N,
+    emit a stack trace (default :0)
+    
+    This is known bugs for rdtagent, they are not introduced by this patch.
+    And they can mislead the depolyer and developer. Need to fix them in
+    feature.
+    
+    TODO:
+    Need to support Model name and file line fields.
+
+ Godeps/Godeps.json                                 |   5 +
+ api/v1/caches.go                                   |   2 +-
+ app/server.go                                      |   2 +-
+ etc/rdtagent/rdtagent.toml                         |   4 +-
+ model/policy/policy.go                             |   2 +-
+ rdtagent.go                                        |   2 +
+ util/log/config/config.go                          |  48 ++
+ util/log/log.go                                    |  30 ++
+ vendor/github.com/sirupsen/logrus/.gitignore       |   1 +
+ vendor/github.com/sirupsen/logrus/.travis.yml      |  12 +
+ vendor/github.com/sirupsen/logrus/CHANGELOG.md     | 100 +++++
+ vendor/github.com/sirupsen/logrus/LICENSE          |  21 +
+ vendor/github.com/sirupsen/logrus/README.md        | 497 +++++++++++++++++++++
+ vendor/github.com/sirupsen/logrus/alt_exit.go      |  64 +++
+ vendor/github.com/sirupsen/logrus/doc.go           |  26 ++
+ vendor/github.com/sirupsen/logrus/entry.go         | 275 ++++++++++++
+ vendor/github.com/sirupsen/logrus/exported.go      | 193 ++++++++
+ vendor/github.com/sirupsen/logrus/formatter.go     |  45 ++
+ vendor/github.com/sirupsen/logrus/hooks.go         |  34 ++
+ .../github.com/sirupsen/logrus/json_formatter.go   |  74 +++
+ vendor/github.com/sirupsen/logrus/logger.go        | 317 +++++++++++++
+ vendor/github.com/sirupsen/logrus/logrus.go        | 143 ++++++
+ .../sirupsen/logrus/terminal_appengine.go          |  10 +
+ vendor/github.com/sirupsen/logrus/terminal_bsd.go  |  10 +
+ .../github.com/sirupsen/logrus/terminal_linux.go   |  14 +
+ .../sirupsen/logrus/terminal_notwindows.go         |  28 ++
+ .../github.com/sirupsen/logrus/terminal_solaris.go |  21 +
+ .../github.com/sirupsen/logrus/terminal_windows.go |  82 ++++
+ .../github.com/sirupsen/logrus/text_formatter.go   | 189 ++++++++
+ vendor/github.com/sirupsen/logrus/writer.go        |  62 +++
+ 30 files changed, 2309 insertions(+), 4 deletions(-)
+
+commit 53d308d6512f8772803903d9331a250e45bfecd1
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Thu Jun 29 17:00:09 2017 +0800
+
+    Add example fot cpu bit map
+    
+    This example is easy to show the little or big endian for cup bit map.
+
+ lib/util/bimmap_test.go | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+commit cf52727d08c97c3b90fc041b7b83da6a4367c071
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Tue Jun 20 14:20:59 2017 -0400
+
+    config: remove unused readDefault func.
+
+ app/config/config.go | 4 ----
+ 1 file changed, 4 deletions(-)
+
+commit 27d6e2cf6ec2c03da77b72e6790ce16abbeec037
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Mon Jun 19 00:31:58 2017 +0800
+
+    Set server address and port
+    
+    This is not a perfect way. There are serveral solutions.
+    But it is a minor refactor for our current code.
+
+ app/config/config.go       |  2 +-
+ app/server.go              | 12 +++++++-----
+ etc/rdtagent/rdtagent.toml |  2 +-
+ util/options/options.go    | 12 ++++--------
+ 4 files changed, 13 insertions(+), 15 deletions(-)
+
+commit c0a32fc268327dee6a4f45ee13b2beed0639e223
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Thu Jun 15 15:40:00 2017 -0400
+
+    add config for rdtagent
+    
+    This patch just parser address and port from etc/rdtagent/rdtagent.toml file.
+    
+    The value from config file will override the hardcode value.
+    The value of options from command line will override the value from config file.
+    
+    Usee TOML.
+    TOML is more readable.
+    Also TOML support comments.
+    
+    There are several golang parser for TOML as follow.
+    Go (@thompelletier) - https://github.com/pelletier/go-toml
+    Go (@laurent22) - https://github.com/laurent22/toml-go
+    Go (@BurntSushi) - https://github.com/BurntSushi/toml
+    Go (@achun) - https://github.com/achun/tom-toml
+    Go (@naoina) - https://github.com/naoina/toml
+    Go (@spf13) - https://github.com/spf13/viper
+    Go (@spf13) - https://github.com/koding/multiconfig
+    
+    BurntSushi/toml is a very polular parser, and it compatibles with TOML version
+    v0.4.0 at present. But seems it only support read.
+    
+    viper is another polular parser.
+    1. Both suport write and read. Here we use Viper.
+    2. Viper supports the ability to have your application live read a
+    config file while running.
+    
+    For source code, we use ./etc/rdtagent/ as an tentative config path.
+    
+    And we use hardcode for the rdtagent.toml at present, will change
+    support rdtagent.toml template later.
+
+ app/config/config.go       | 29 +++++++++++++++++++++++++++++
+ app/server.go              |  5 +++++
+ etc/rdtagent/rdtagent.toml | 14 ++++++++++++++
+ rdtagent.go                |  2 ++
+ util/conf/conf.go          | 24 ++++++++++++++++++++++++
+ 5 files changed, 74 insertions(+)
+
+commit 91b28ee72031f53773f9860d34dad183d083e095
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Thu Jun 8 19:58:27 2017 -0400
+
+    add a AppError struct for API error handle.
+    
+    a model should classify the error, reform it to AppError.
+    Then API layer should call:
+       response.WriteError(AppError.Code, AppError.Err)
+    
+    This is just a beginning for error refactor.
+    
+    We should add more error variates for different functions with error
+    return.
+
+ api/error/error.go      |  8 ++++++++
+ api/error/error_test.go | 33 +++++++++++++++++++++++++++++++++
+ 2 files changed, 41 insertions(+)
+
+commit 35f83935342a4e3e31c69bbb6f06cc000359e4a3
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Wed Jun 7 17:05:15 2017 -0400
+
+    support flock.
+    
+    prefer to user go native flock(lib/flock/flock.go), instead of c flock
+    by cgo.
+
+ lib/flock/flock.go      | 43 +++++++++++++++++++++++++++++++++++++++++++
+ lib/flock/flock_test.go | 25 +++++++++++++++++++++++++
+ lib/resctrl/rescrtl.go  |  2 ++
+ 3 files changed, 70 insertions(+)
+
+commit 8823672566bf107315f698c7e10c39003ecbb65f
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Sun Jun 4 13:44:48 2017 -0400
+
+    add a function to parser the context in resctrl file
+    
+    Now our resctrl interface just get the context from resctrl file
+    as a plain text.
+    
+    We need to parser them.
+
+ lib/util/bimmap.go      | 43 +++++++++++++++++++++++++++++++++++++++++++
+ lib/util/bimmap_test.go | 24 ++++++++++++++++++++++++
+ 2 files changed, 67 insertions(+)
+
+commit d07cf1286803a7c92dfa0e4a273270b5b52d87e1
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Sun May 21 17:27:28 2017 -0400
+
+    plugin for rdt algorithm
+    
+    This is an example for algorithm plugin.
+    Please do not nibble at it.
+    
+    The plugin require golang 1.8.
+    We should update our golang.
+    
+    The policy/algorithm are diversity, so we use plugin to solve this
+    problem.
+    
+    There are 3 ways I can think of.
+    1. golang native plugin
+       This require 1.8 version
+    2. rpc plugin
+       no version require.
+    3. static map for different policy/algorithm.
+       such as:
+       pkg/model/workload1
+       pkg/model/workload2
+       a global map in our srource code.
+           algorithm["v1"] = workload1.Enforce
+           algorithm["dilangov_dynamic"] = workload2.Enforce
+           p = policy["Name"]
+           algorithm[p]()
+       This static method need to rebuild the whole rdtagent when new
+       policy/algorithm are added.
+    
+    So I prefer the first one.
+
+ pkg/plugins/algorithm/sample/Godeps/Godeps.json    |  9 +++
+ pkg/plugins/algorithm/sample/Godeps/Readme         |  5 ++
+ .../_workspace/src/github.com/bitly/go-simplejson  |  1 +
+ pkg/plugins/algorithm/sample/README                | 39 +++++++++++++
+ pkg/plugins/algorithm/sample/build.sh              | 28 +++++++++
+ .../algorithm/sample/internal/policy/policy.go     | 15 +++++
+ .../algorithm/sample/internal/workload/workload.go | 20 +++++++
+ pkg/plugins/algorithm/sample/sample.go             | 68 ++++++++++++++++++++++
+ pkg/plugins/algorithm/sample/sample_test.go        | 64 ++++++++++++++++++++
+ .../sample/vendor/github.com/bitly/go-simplejson   |  1 +
+ 10 files changed, 250 insertions(+)
+
+commit 4d90233595167b0e1e7a74284ad168c8608505ab
+Author: Shaohe Feng <shaohe.feng@intel.com>
+Date:   Mon May 22 20:13:55 2017 -0400
+
+    bug fix: fix the json tag of RDTWorkLoad
+
+ pkg/model/workload/workload.go | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit f1ae09d0d84de73f576fa70d2c2f86cf01ec2e41
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Sun May 7 23:30:37 2017 +0800
+
+    Generate cpu map strings for resctrl
+    
+    User can input a cpu set from API as follow:
+    ["2-8,^3-4,^7,9", "56-87,^86,^57-58"]
+    
+    It can translate it to:
+    bffffc,1f000000,366
+    
+    "2-8" means set the bit 2-8 as 1,
+    "^57-58" means clean the bit 57-58 to 0.
+    
+    Also add some sanity check.
+    1. the bit index can not larger than the cpu numbers.
+    Such as, on a host with 88 cpus, this setting ["58-89"] exceed the
+    cpu numbers, this is not allowed.
+    
+    2. Only allow digital(0-9), hyphen, comma, Caret characters.
+    ["56-87, ^86,^57-58"] with a whitespace in it is also not allowed.
+    
+    please ref the testcase how to use this function.
+
+ lib/util/bimmap.go      | 233 ++++++++++++++++++++++++++++++++++++++++++++++++
+ lib/util/bimmap_test.go |  66 ++++++++++++++
+ 2 files changed, 299 insertions(+)
+
+commit 41667052ce6392edaced916a89a28384ad7781d4
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Sun May 7 23:21:57 2017 +0800
+
+    add cpu lib
+    
+    This lib will handle cpu related info on host.
+    
+    Firstly, we add the function to get the cpu number from cpu/possible in sys.
+    
+    The number is the cpu bitmap length.
+
+ lib/cpu/cpu.go | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+
+commit b2be6c4c4d57d31cd270f48d165c2868f0b2fbdf
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Fri May 5 02:07:22 2017 +0800
+
+    add an example for workload Enfore
+    
+    1. Very the task.
+    
+    2. Allocated the CPU for a resctrl group
+    A CpuIds looks like:
+    CpuIds := []string{0: "0-2", 2: "3-8", 1: "0-18", 4: "80-87"}
+    
+    3. Shared res will be commit later.
+
+ lib/proc/proc.go               |  26 +++++++++
+ lib/util/util.go               | 125 +++++++++++++++++++++++++++++++++++++++++
+ pkg/model/workload/workload.go |  23 ++++++++
+ 3 files changed, 174 insertions(+)
+
+commit f7ac9b792b517ae50712ccfbf8cb7b1238efa41a
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Thu Apr 27 22:57:14 2017 +0800
+
+    writeback all resctrl schemata
+    
+    include update/add and delete.
+
+ lib/resctrl/rescrtl.go | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
+
+commit 8606330283c7bef4a01b8b96bc7f8165eb805f2a
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Thu Apr 27 21:56:18 2017 +0800
+
+    implement the function for resctrl schemata info writeback
+    
+    Shell we still need to add the separated function for update cups/tasks/schemata
+    file?
+
+ lib/resctrl/rescrtl.go | 57 ++++++++++++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 55 insertions(+), 2 deletions(-)
+
+commit 3055b663e150a5130f87146dbb37f50097d6cdbe
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Thu Apr 27 18:01:35 2017 +0800
+
+    add a function for resctrl schemata info writeback
+    
+    Now an operation routine of RDT:
+    1. user choose a policy
+    2. user apply a task to one rule of policy.
+    
+    Map to rdt code at prensent :
+    1. policy API for the policy.
+    2. Task related API for user to enfore the rule.
+    3. An uderlay(Task related model) for most of the algorithm logic.
+    4. call the rescrtl.go interface to let kernel set the RDT.
+    
+    This is just a small model for a simple policy.
+    Now we just implemented a simple skeleton without any tune, we will improve it later.
+    
+    This function is empty, will be implemented later.
+
+ lib/resctrl/rescrtl.go | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+commit 07bdbf6bf30f4d46d6941a9b872e9a0aff4a7459
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Thu Apr 27 17:27:53 2017 +0800
+
+    add type convert function.
+    
+    will refactor soem setField code to this new function.
+
+ lib/util/util.go | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+
+commit 803a8c3055ae1ce10d330cbfbc14b47a118cc13b
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Thu Apr 27 17:02:56 2017 +0800
+
+    deep parser resctrl schemadata
+    
+    Now we can get all schemadata infos from resctrl.
+    
+    A new schemadata infos writeback to restctrl will be added.
+
+ lib/resctrl/rescrtl.go | 51 ++++++++++++++++++++++++++++++++++++++++++++++----
+ 1 file changed, 47 insertions(+), 4 deletions(-)
+
+commit 02b75f9ecc8c585511324d88e45560594d6ed1ca
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Tue Apr 25 15:25:25 2017 +0800
+
+    add the resctrl lib
+    
+    There are some resctrl operation in intelrdt.
+    We have remove it, we will pick up some from it later.
+
+ lib/resctrl/rescrtl.go | 303 +++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 303 insertions(+)
+
+commit 1d70dd6d5575839dc48b5f2516221c0a05d55e43
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Thu Apr 13 17:11:59 2017 +0800
+
+    Support cache related API
+    
+    1. Firstly add a file to get info
+    2. Do not use globle var to store the cache info.
+       For they are come from sysfs. We can offline cpu dynamicly.
+       treate them as volatile
+    3. so many edges are not cared.
+       API, lib ...
+    4. access the resctrl need flock to avoid race with other agent.
+       Go does not support flock lib.
+       That need cgo, please ref:
+       https://gist.github.com/ericchiang/ce0fdcac5659d0a80b38
+    5. need to support resctrl related API.
+
+ api/model/cache/cache.go | 113 ++++++++
+ api/v1/caches.go         |  91 +++++++
+ app/server.go            |   4 +
+ lib/cache/cache.go       | 132 ++++++++++
+ lib/configs/intelrdt.go  |   7 +
+ lib/intelrdt/intelrdt.go | 670 +++++++++++++++++++++++++++++++++++++++++++++++
+ lib/proc/proc.go         | 100 +++++++
+ 7 files changed, 1117 insertions(+)
+
+commit b7f1d69d27a7e839ac3fc3f48c53164815e78411
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Sat Apr 1 21:14:45 2017 +0800
+
+    Use Copy to set array value.
+    
+    Copy can set slice data to array.
+
+ cgolib/common/utils.go | 15 +--------------
+ 1 file changed, 1 insertion(+), 14 deletions(-)
+
+commit a95bff71c8659f4b8c081a7a34b79b10d8fa4b3e
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Sat Apr 1 20:34:52 2017 +0800
+
+    Set the uion addr after passer successfully.
+    
+    I did not find a good way to distinguish 64/32 bit os system
+    Here I use a stupid way.
+    
+    Let's improve it later.
+
+ cgolib/common/utils.go | 17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
+
+commit 68d98a1b57b414f5d44a6ac105b2f408ade2ced6
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Sat Apr 1 13:25:22 2017 +0800
+
+    utils add logic to parser union data type in C
+    
+    Still some Problem:
+    1. we use godef to generate the GO data type from C data type.
+        All these GO code are hard code.
+        So these code maybe not run well on different system.
+        But the common/utils.go has consider this case.
+        But the code in cpuinfo/cpuinfo.go need refacor.
+    
+    2. godef tanslate C uinon to go Array.
+        We should think carefully about it.
+        Maybe we should add a modle layer, translate the these data from
+        libpqos to API expected.
+        Now the utils just paser the union data, do not set it to Go data type.
+
+ cgolib/common/utils.go    | 49 +++++++++++++++++++++++--
+ cgolib/cpuinfo/cpuinfo.go | 91 ++++++++++++++++++++++++-----------------------
+ 2 files changed, 94 insertions(+), 46 deletions(-)
+
+commit 2fe4ba00caf8f721fa8b209e2a2cfff75330917b
+Author: JF Ding <jian-feng.ding@intel.com>
+Date:   Fri Mar 31 20:35:31 2017 +0800
+
+    clean up cpuinfo cgo wrapper code
+
+ cgolib/cpuinfo/cpuinfo.c  | 51 +++++++++++++++++++----------------------------
+ cgolib/cpuinfo/cpuinfo.go |  8 ++++----
+ 2 files changed, 25 insertions(+), 34 deletions(-)
+
+commit ccd4e5b2bb2bce7e5912b2b34ea74c5318c47a2f
+Merge: ae9875c 30750f9
+Author: JF Ding <jian-feng.ding@intel.com>
+Date:   Fri Mar 31 19:07:02 2017 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+commit ae9875c2e2e255196770822385e7ceeaa644c70c
+Author: JF Ding <jian-feng.ding@intel.com>
+Date:   Fri Mar 31 19:03:02 2017 +0800
+
+    re-arranged document and scripts
+
+ DeveloperQuickStart.md                             |  61 --------
+ README.md                                          |  14 ++
+ TODO.md                                            |  18 +++
+ UserGuide.md                                       |  39 -----
+ docs/DeveloperQuickStart.md                        |  61 ++++++++
+ docs/UserGuide.md                                  |  37 +++++
+ docs/reference-docs/README.rst                     |  35 -----
+ docs/reference-docs/libpqos-user-interface.txt     | 174 ---------------------
+ .../reference-docs/linux-kernel-user-interface.txt | 156 ------------------
+ docs/reference/README.rst                          |  35 +++++
+ docs/reference/libpqos-user-interface.txt          | 174 +++++++++++++++++++++
+ docs/reference/linux-kernel-user-interface.txt     | 156 ++++++++++++++++++
+ install                                            |  11 --
+ install-deps                                       |  11 ++
+ spec/todo.md                                       |  18 ---
+ 15 files changed, 506 insertions(+), 494 deletions(-)
+
+commit 5563fe774ea9327e2d2ede4145d9504d63e48937
+Author: JF Ding <jian-feng.ding@intel.com>
+Date:   Fri Mar 31 18:28:21 2017 +0800
+
+    clean up cgo code base
+    
+    1. change submodule intel-cmt-cat to inner place with Makefile
+    2. need not install static c libs to system folders
+    3. more separated handling of C and Go code
+
+ .gitmodules                 |  4 ++--
+ .idea/libraries/Go_SDK.xml  |  8 --------
+ Makefile                    | 35 -----------------------------------
+ cgolib/_c/libs/README       |  8 ++++++++
+ cgolib/_c/src/Makefile      | 35 +++++++++++++++++++++++++++++++++++
+ cgolib/_c/src/intel-cmt-cat |  1 +
+ cgolib/cat/cat.c            |  3 +--
+ cgolib/cat/cat.go           | 11 ++++++-----
+ cgolib/cpuinfo/cpuinfo.c    |  3 +--
+ cgolib/cpuinfo/cpuinfo.go   | 11 ++++++-----
+ install                     |  4 ++--
+ src/cmt-cat                 |  1 -
+ 12 files changed, 62 insertions(+), 62 deletions(-)
+
+commit 30750f9979ea7cad76f6283c172644cc93eddc93
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Fri Mar 31 17:06:25 2017 +0800
+
+    report error when initializing libpqos
+    
+    We still improve API layer.
+
+ cgolib/cpuinfo/cpuinfo.go | 19 +++++++++++++++++--
+ 1 file changed, 17 insertions(+), 2 deletions(-)
+
+commit 1b1bcb94e3cd5eb7e11e7e81bc7f65a8ced1d10d
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Fri Mar 31 14:20:53 2017 +0800
+
+    Use pqos_init
+    
+    The cpuinfo_init is not public in pqos.h
+
+ cgolib/cpuinfo/cpuinfo.c  | 22 ++++++++++++----------
+ cgolib/cpuinfo/cpuinfo.go |  4 +---
+ 2 files changed, 13 insertions(+), 13 deletions(-)
+
+commit f5453853168c943b36f1a5e2e263d6aaea7df8e4
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Thu Mar 23 11:43:20 2017 +0800
+
+    move parser slice to utils.
+    
+    So developers can just focus on their GO struct define for CGO
+
+ cgolib/cat/cat.go         |  5 ++--
+ cgolib/common/utils.go    | 66 +++++++++++++++++++++++++++++++++++++----------
+ cgolib/cpuinfo/cpuinfo.go | 66 +++++++++++++++++++++--------------------------
+ 3 files changed, 84 insertions(+), 53 deletions(-)
+
+commit 32e6dcca90b4bf798c4efc469afd7150aeef5c6d
+Author: JF Ding <jian-feng.ding@intel.com>
+Date:   Wed Mar 29 17:16:21 2017 +0800
+
+    Update and rename documents
+    
+    README.md -> UserGuide.md for more precise
+
+ DeveloperQuickStart.md | 20 ++++++++++----------
+ README.md              | 40 ----------------------------------------
+ UserGuide.md           | 39 +++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 49 insertions(+), 50 deletions(-)
+
+commit 8f8ce36b860b5254b2a5f71bc8c163c8e4b8fd4e
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Thu Mar 23 11:57:16 2017 +0800
+
+    fix wild pointer
+    
+    This wild pointer will cause the rdtagent panic.
+
+ cgolib/cat/cat.c  | 2 +-
+ cgolib/cat/cat.go | 9 ++++++++-
+ 2 files changed, 9 insertions(+), 2 deletions(-)
+
+commit 2a8af4be881b0045829b563bd30443be1b9deda2
+Author: Feng, Shaohe <shaohe.feng@intel.com>
+Date:   Tue Mar 21 20:21:16 2017 +0800
+
+    Add an interface to paser slice
+
+ cgolib/common/utils.go    | 26 +++++++++++++++++++++-----
+ cgolib/cpuinfo/cpuinfo.go | 31 +++++++++++++++++++++++++------
+ 2 files changed, 46 insertions(+), 11 deletions(-)
+
+commit affc1e80265b7c3a9c037b6896d3508652fd4be4
+Author: Shao He Feng <shaohe.feng@intel.com>
+Date:   Fri Mar 17 17:21:51 2017 +0800
+
+    Improve the slice handle for cgo struct parse
+    
+    We still need a good way to parse this slice.
+
+ cgolib/common/utils.go | 254 +++++++++++++++++++++++++------------------------
+ 1 file changed, 130 insertions(+), 124 deletions(-)
+
+commit 8c82b84c77e3fb30523404a5e02cb1112e51d1a4
+Author: Shao He Feng <shaohe.feng@intel.com>
+Date:   Thu Mar 16 20:28:13 2017 +0800
+
+    Cgo: Add cupinfo
+    
+    Author: Shaohe Feng <shaohe.feng@intel.com>
+
+ .gitignore                |   2 +
+ .gitmodules               |   3 +
+ Makefile                  |  35 +++++++++++
+ cgolib/common/utils.go    | 151 +++++++++++++++++++++++++++++++++++++++++++++
+ cgolib/cpuinfo/cpuinfo.c  |  29 +++++++++
+ cgolib/cpuinfo/cpuinfo.go | 152 ++++++++++++++++++++++++++++++++++++++++++++++
+ install                   |   2 +
+ src/cmt-cat               |   1 +
+ 8 files changed, 375 insertions(+)
